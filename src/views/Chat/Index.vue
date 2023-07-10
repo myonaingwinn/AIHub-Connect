@@ -1,8 +1,9 @@
 <template>
+  <notification ref="notificationRef" />
   <v-row class="mb-16">
     <v-col cols="3">
     </v-col>
-    <v-col cols="6" class="msg-col">
+    <v-col cols="6" class="msg-col mb-8">
       <message v-for="item in qa" :key="item.id" :content="item.content" :type="item.type" />
     </v-col>
     <v-col cols="3">
@@ -12,29 +13,28 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 import { nanoid } from "nanoid"
 import { chatCompletionRequest } from "@/api/chatCompletionRequest"
 import { CONTENT_TYPE } from "@/utils/types"
 import InputFooter from "./components/InputFooter"
 import Message from "./components/Message"
+import NotificationMixin from '@/mixin/NotificationMixin';
 
 export default {
+  mixins: [NotificationMixin],
+
   components: {
     InputFooter,
     Message,
   },
 
   data() {
-    const footerRef = ref(InputFooter)
-
     return {
       qa: [],
       CONTENT_TYPE,
       prompt: "",
-      slowText: "",
+      // slowText: "",
       response: "",
-      footerRef,
     };
   },
 
@@ -62,10 +62,11 @@ export default {
         if (res.status === 200)
           this.response = res.data.choices[0].message.content
         else {
-
+          this.showNotification('Server is currently overloaded with other requests. Please try again!');
         }
         // this.slowWriting()
-        console.log("result:", res);
+        // console.log("result:", res);
+      }).finally(() => {
         this.$refs.footerRef.setLoadingAndDisable()
       });
     },
