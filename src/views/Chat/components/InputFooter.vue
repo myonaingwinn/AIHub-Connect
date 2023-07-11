@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style>
+<style type="scss">
 .footer {
   .textarea-with-icon {
     position: relative;

@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style>
+<style type="scss">
 .card-content {
   white-space: pre-wrap;
   font-family: Questrial, 'Söhne', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Cantarell', 'Noto Sans', sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
