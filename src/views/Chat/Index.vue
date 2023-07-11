@@ -1,24 +1,28 @@
 <template>
   <notification ref="notificationRef" />
   <v-row class="mb-16">
-    <v-col cols="3">
-    </v-col>
+    <v-col cols="3"> </v-col>
     <v-col cols="6" class="msg-col mb-8">
-      <message v-for="item in qa" :key="item.id" :content="item.content" :type="item.type" />
+      <message
+        v-for="item in qa"
+        :key="item.id"
+        :content="item.content"
+        :type="item.type"
+      />
     </v-col>
-    <v-col cols="3">
-    </v-col>
+    <v-col cols="3"> </v-col>
   </v-row>
   <input-footer @submit="submit" ref="footerRef" />
 </template>
 
 <script>
-import { nanoid } from "nanoid"
-import { chatCompletionRequest } from "@/api/chatCompletionRequest"
-import { CONTENT_TYPE } from "@/utils/types"
-import InputFooter from "./components/InputFooter"
-import Message from "./components/Message"
-import NotificationMixin from '@/mixin/NotificationMixin';
+import { nanoid } from "nanoid";
+import { chatCompletionRequest } from "@/api/chatCompletionRequest";
+import { CONTENT_TYPE } from "@/utils/types";
+import { ERRORS } from "@/utils/errors";
+import InputFooter from "./components/InputFooter";
+import Message from "./components/Message";
+import NotificationMixin from "@/mixin/NotificationMixin";
 
 export default {
   mixins: [NotificationMixin],
@@ -55,30 +59,47 @@ export default {
      }, */
 
     async submit(prompt) {
-      this.$refs.footerRef.setLoadingAndDisable()
+      this.$refs.footerRef.setLoadingAndDisable();
 
-      this.prompt = prompt
-      chatCompletionRequest(prompt).then((res) => {
-        if (res.status === 200)
-          this.response = res.data.choices[0].message.content
-        else {
-          this.showNotification('Server is currently overloaded with other requests. Please try again!');
-        }
-        // this.slowWriting()
-        // console.log("result:", res);
-      }).finally(() => {
-        this.$refs.footerRef.setLoadingAndDisable()
-      });
+      this.prompt = prompt;
+      chatCompletionRequest(prompt)
+        .then((res) => {
+          if (res.status === 200)
+            this.response = res.data.choices[0].message.content;
+
+          // this.slowWriting()
+          // console.log("result:", res);
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.showNotification(ERRORS.SERVER_ERROR);
+          } else if (error.request) {
+            this.showNotification(ERRORS.NETWORK_ERROR);
+          } else {
+            this.showNotification(ERRORS.UNKNOWN_ERROR);
+          }
+        })
+        .finally(() => {
+          this.$refs.footerRef.setLoadingAndDisable();
+        });
     },
   },
 
   watch: {
     prompt(newPrompt) {
-      this.qa.push({ id: nanoid(), type: CONTENT_TYPE.QUESTION, content: newPrompt })
+      this.qa.push({
+        id: nanoid(),
+        type: CONTENT_TYPE.QUESTION,
+        content: newPrompt,
+      });
     },
 
     response(newResponse) {
-      this.qa.push({ id: nanoid(), type: CONTENT_TYPE.ANSWER, content: newResponse })
+      this.qa.push({
+        id: nanoid(),
+        type: CONTENT_TYPE.ANSWER,
+        content: newResponse,
+      });
     },
   },
 };
