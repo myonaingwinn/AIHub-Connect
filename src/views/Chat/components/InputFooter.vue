@@ -2,11 +2,25 @@
   <v-footer class="footer rounded-t-lg">
     <v-row align="center" justify="center">
       <v-col>
-        <v-textarea v-model="prompt" variant="outlined" rows="1" row-height="15" auto-grow class="textarea-with-icon"
-          @keydown.enter="handleEnterKey" :loading="loading" :disabled="disabled">
+        <v-textarea
+          v-model="prompt"
+          variant="outlined"
+          color="info"
+          rows="1"
+          row-height="15"
+          auto-grow
+          class="textarea-with-icon"
+          :loading="loading"
+          :disabled="disabled"
+          @keydown.enter="handleEnterKey"
+        >
           <template #append-inner>
-            <v-icon @click="submit" :class="['send-icon', disable ? 'disabled' : '']"
-              :color="disable ? 'grey' : 'teal'">mdi-send</v-icon>
+            <v-icon
+              @click="submit"
+              :class="['send-icon', disable ? 'disabled' : '']"
+              :color="disable ? 'grey' : 'teal'"
+              >mdi-send</v-icon
+            >
           </template>
         </v-textarea>
       </v-col>
@@ -17,18 +31,15 @@
 <script>
 export default {
   data: () => {
-    const loading = false
-    const disabled = false
-
-    return { prompt: "", loading, disabled }
+    return { prompt: "", loading: false, disabled: false };
   },
 
   methods: {
     submit() {
       if (this.disable) return;
 
-      this.$emit('submit', this.prompt.trim());
-      this.prompt = ''
+      this.$emit("submit", this.prompt.trim());
+      this.prompt = "";
     },
 
     handleEnterKey(event) {
@@ -40,9 +51,9 @@ export default {
     },
 
     setLoadingAndDisable() {
-      this.loading = !this.loading
-      this.disabled = !this.disabled
-    }
+      this.loading = !this.loading;
+      this.disabled = !this.disabled;
+    },
   },
 
   computed: {
@@ -50,7 +61,7 @@ export default {
       return !this.prompt.trim();
     },
   },
-}
+};
 </script>
 
 <style>
@@ -65,7 +76,6 @@ export default {
     bottom: 0;
     right: 10px;
     transform: translateY(-70%);
-
   }
 
   .disabled {
