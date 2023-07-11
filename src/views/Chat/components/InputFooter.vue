@@ -5,7 +5,7 @@
         <v-textarea
           v-model="prompt"
           variant="outlined"
-          color="info"
+          color="primary"
           rows="1"
           row-height="15"
           auto-grow
