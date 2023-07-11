@@ -10,7 +10,9 @@
         :type="item.type"
       />
     </v-col>
-    <v-col cols="3"> </v-col>
+    <v-col cols="3">
+      <go-to-bottom-btn />
+    </v-col>
   </v-row>
   <input-footer @submit="submit" ref="footerRef" />
 </template>
@@ -20,6 +22,7 @@ import { nanoid } from "nanoid";
 import { chatCompletionRequest } from "@/api/chatCompletionRequest";
 import { CONTENT_TYPE } from "@/utils/types";
 import { ERRORS } from "@/utils/errors";
+import GoToBottomBtn from "@/components/GoToBottomBtn.vue";
 import InputFooter from "./components/InputFooter";
 import Message from "./components/Message";
 import NotificationMixin from "@/mixin/NotificationMixin";
@@ -28,6 +31,7 @@ export default {
   mixins: [NotificationMixin],
 
   components: {
+    GoToBottomBtn,
     InputFooter,
     Message,
   },
