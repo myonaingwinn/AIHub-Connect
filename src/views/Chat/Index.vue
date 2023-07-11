@@ -20,6 +20,7 @@
 <script>
 import { nanoid } from "nanoid";
 import { chatCompletionRequest } from "@/api/chatCompletionRequest";
+import { scrollToBottom } from "@/utils/scroll";
 import { CONTENT_TYPE } from "@/utils/types";
 import { ERRORS } from "@/utils/errors";
 import GoToBottomBtn from "@/components/GoToBottomBtn.vue";
@@ -84,6 +85,7 @@ export default {
           }
         })
         .finally(() => {
+          scrollToBottom();
           this.$refs.footerRef.setLoadingAndDisable();
         });
     },

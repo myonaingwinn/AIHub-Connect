@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { scrollToBottom } from "@/utils/scroll";
+
 export default {
   data() {
     return {
@@ -43,10 +45,7 @@ export default {
     },
 
     scrollToBottom() {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
+      scrollToBottom();
     },
   },
 };
