@@ -13,8 +13,13 @@ import { createApp } from 'vue'
 // Plugins
 import { registerPlugins } from '@/plugins'
 
+// Mixin
+import NotificationMixin from '@/mixin/NotificationMixin'
+
 const app = createApp(App)
 
 registerPlugins(app)
+
+app.mixin(NotificationMixin)
 
 app.mount('#app')
