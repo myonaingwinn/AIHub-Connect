@@ -63,23 +63,3 @@ export default {
   },
 };
 </script>
-
-<style type="scss">
-.footer {
-  .textarea-with-icon {
-    position: relative;
-    margin: 0 20vw 0;
-  }
-
-  .send-icon {
-    position: absolute;
-    bottom: 0;
-    right: 10px;
-    transform: translateY(-70%);
-  }
-
-  .disabled {
-    cursor: default;
-  }
-}
-</style>

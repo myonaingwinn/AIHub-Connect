@@ -1,6 +1,6 @@
 <template>
   <notification ref="notificationRef" />
-  <v-row class="mb-16">
+  <v-row class="mb-16 chat-index">
     <v-col cols="3"> </v-col>
     <v-col cols="6" class="msg-col mb-8">
       <message
@@ -104,13 +104,3 @@ export default {
   },
 };
 </script>
-
-<style type="scss">
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 0px 50px 0px;
-}
-</style>
