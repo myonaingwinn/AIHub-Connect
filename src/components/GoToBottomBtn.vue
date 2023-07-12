@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-fade-transition>
     <v-btn
       v-if="showButton"
       class="btn-scroll2bottom"
@@ -11,7 +11,7 @@
       @click="scrollToBottom"
     >
     </v-btn>
-  </div>
+  </v-fade-transition>
 </template>
 
 <script>
