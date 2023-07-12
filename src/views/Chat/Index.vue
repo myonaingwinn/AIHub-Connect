@@ -41,7 +41,6 @@ export default {
     return {
       qa: [],
       CONTENT_TYPE,
-      prompt: "",
       // slowText: "",
       response: "",
     };
@@ -66,7 +65,12 @@ export default {
     async submit(prompt) {
       this.$refs.footerRef.setLoadingAndDisable();
 
-      this.prompt = prompt;
+      this.qa.push({
+        id: nanoid(),
+        type: CONTENT_TYPE.QUESTION,
+        content: prompt,
+      });
+
       chatCompletionRequest(prompt)
         .then((res) => {
           if (res.status === 200)
@@ -92,14 +96,6 @@ export default {
   },
 
   watch: {
-    prompt(newPrompt) {
-      this.qa.push({
-        id: nanoid(),
-        type: CONTENT_TYPE.QUESTION,
-        content: newPrompt,
-      });
-    },
-
     response(newResponse) {
       this.qa.push({
         id: nanoid(),

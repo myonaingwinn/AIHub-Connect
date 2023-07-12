@@ -11,24 +11,16 @@
     <v-row>
       <v-col cols="1">
         <img
-          v-if="type === CONTENT_TYPE.QUESTION"
-          :src="userAvatar"
-          height="60"
-          width="80"
-          alt="avatar"
-        />
-        <img
-          v-if="type === CONTENT_TYPE.ANSWER"
-          :src="aiAvatar"
-          height="55"
-          width="75"
+          :src="type === CONTENT_TYPE.QUESTION ? userAvatar : aiAvatar"
+          height="45"
+          width="65"
           alt="avatar"
           class="pb-1"
         />
       </v-col>
       <v-col cols="11">
         <div
-          class="v-card-text card-content pr-3 pb-3"
+          class="v-card-text card-content pr-5 pb-5"
           v-html="interpretCode(content)"
         ></div>
       </v-col>
