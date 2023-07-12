@@ -10,25 +10,16 @@
   >
     <v-row>
       <v-col cols="1">
-        <img
-          v-if="type === CONTENT_TYPE.QUESTION"
-          :src="userAvatar"
-          height="60"
-          width="80"
-          alt="avatar"
-        />
-        <img
-          v-if="type === CONTENT_TYPE.ANSWER"
-          :src="aiAvatar"
-          height="55"
-          width="75"
-          alt="avatar"
-          class="pb-1"
-        />
+        <v-icon
+          :icon="getIcon(type)"
+          :color="getIconColor(type)"
+          size="x-large"
+          class="msg-card-icons"
+        ></v-icon>
       </v-col>
       <v-col cols="11">
         <div
-          class="v-card-text card-content pr-3 pb-3"
+          class="v-card-text card-content pr-5 pb-5"
           v-html="interpretCode(content)"
         ></div>
       </v-col>
@@ -37,7 +28,6 @@
 </template>
 
 <script>
-import { getChatCompletionAvatars } from "@/utils/env";
 import { CONTENT_TYPE } from "@/utils/types";
 
 export default {
@@ -53,11 +43,7 @@ export default {
   },
 
   data() {
-    const { user, ai } = getChatCompletionAvatars();
-    const userAvatar = user || "/src/assets/avatars/user.svg";
-    const aiAvatar = ai || "/src/assets/avatars/ai.svg";
-
-    return { CONTENT_TYPE, userAvatar, aiAvatar };
+    return { CONTENT_TYPE };
   },
 
   methods: {
@@ -72,6 +58,14 @@ export default {
       markdown = markdown.replace(inlineCodeRegex, "<code>$1</code>");
 
       return markdown;
+    },
+
+    getIcon(type) {
+      return type === CONTENT_TYPE.QUESTION ? "mdi-account-tie" : "mdi-robot";
+    },
+
+    getIconColor(type) {
+      return type === CONTENT_TYPE.QUESTION ? "brown" : "light-blue-darken-3";
     },
   },
 };

@@ -41,7 +41,6 @@ export default {
     return {
       qa: [],
       CONTENT_TYPE,
-      prompt: "",
       // slowText: "",
       response: "",
     };
@@ -66,11 +65,19 @@ export default {
     async submit(prompt) {
       this.$refs.footerRef.setLoadingAndDisable();
 
-      this.prompt = prompt;
+      this.qa.push({
+        id: nanoid(),
+        type: CONTENT_TYPE.QUESTION,
+        content: prompt,
+      });
+
       chatCompletionRequest(prompt)
         .then((res) => {
-          if (res.status === 200)
+          if (res.status === 200 && res.data.choices[0].message.content) {
             this.response = res.data.choices[0].message.content;
+          } else {
+            this.showNotification(ERRORS.UNKNOWN_ERROR);
+          }
 
           // this.slowWriting()
           // console.log("result:", res);
@@ -92,14 +99,6 @@ export default {
   },
 
   watch: {
-    prompt(newPrompt) {
-      this.qa.push({
-        id: nanoid(),
-        type: CONTENT_TYPE.QUESTION,
-        content: newPrompt,
-      });
-    },
-
     response(newResponse) {
       this.qa.push({
         id: nanoid(),
