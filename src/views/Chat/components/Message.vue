@@ -46,8 +46,8 @@ export default {
 
   data() {
     const { user, ai } = getChatCompletionAvatars();
-    const userAvatar = user || "src/assets/avatars/user.svg";
-    const aiAvatar = ai || "src/assets/avatars/ai.svg";
+    const userAvatar = user || "src/assets/user.svg";
+    const aiAvatar = ai || "src/assets/ai.svg";
 
     return { CONTENT_TYPE, userAvatar, aiAvatar };
   },
