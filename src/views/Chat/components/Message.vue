@@ -10,16 +10,16 @@
   >
     <v-row>
       <v-col cols="1">
-        <v-icon
+        <v-avatar
           :icon="getIcon(type)"
           :color="getIconColor(type)"
-          size="x-large"
-          class="msg-card-icons"
-        ></v-icon>
+          class="msg-card-icons mb-3"
+        >
+        </v-avatar>
       </v-col>
       <v-col cols="11">
         <div
-          class="v-card-text card-content pr-5 pb-5"
+          class="card-content pr-5 pb-4"
           v-html="interpretCode(content)"
         ></div>
       </v-col>
@@ -61,11 +61,15 @@ export default {
     },
 
     getIcon(type) {
-      return type === CONTENT_TYPE.QUESTION ? "mdi-account-tie" : "mdi-robot";
+      return this.isUser(type) ? "mdi-account" : "mdi-robot";
     },
 
     getIconColor(type) {
-      return type === CONTENT_TYPE.QUESTION ? "brown" : "light-blue-darken-3";
+      return this.isUser(type) ? "teal-darken-1" : "light-blue-darken-3";
+    },
+
+    isUser(type) {
+      return type === CONTENT_TYPE.QUESTION;
     },
   },
 };
