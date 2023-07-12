@@ -73,8 +73,11 @@ export default {
 
       chatCompletionRequest(prompt)
         .then((res) => {
-          if (res.status === 200)
+          if (res.status === 200 && res.data.choices[0].message.content) {
             this.response = res.data.choices[0].message.content;
+          } else {
+            this.showNotification(ERRORS.UNKNOWN_ERROR);
+          }
 
           // this.slowWriting()
           // console.log("result:", res);
