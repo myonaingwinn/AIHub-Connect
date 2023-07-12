@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { getChatCompletionAvatars } from "@/utils/env";
 import { CONTENT_TYPE } from "@/utils/types";
 
 export default {
@@ -44,11 +43,7 @@ export default {
   },
 
   data() {
-    const { user, ai } = getChatCompletionAvatars();
-    const userAvatar = user || "src/assets/user.svg";
-    const aiAvatar = ai || "src/assets/ai.svg";
-
-    return { CONTENT_TYPE, userAvatar, aiAvatar };
+    return { CONTENT_TYPE };
   },
 
   methods: {
