@@ -7,8 +7,10 @@
           variant="outlined"
           color="primary"
           rows="1"
+          max-rows="6"
           row-height="15"
           auto-grow
+          autofocus
           class="textarea-with-icon mt-3"
           :loading="loading"
           :disabled="disabled"

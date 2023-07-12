@@ -10,13 +10,12 @@
   >
     <v-row>
       <v-col cols="1">
-        <img
-          :src="type === CONTENT_TYPE.QUESTION ? userAvatar : aiAvatar"
-          height="45"
-          width="65"
-          alt="avatar"
-          class="pb-1"
-        />
+        <v-icon
+          :icon="getIcon(type)"
+          :color="getIconColor(type)"
+          size="x-large"
+          class="msg-card-icons"
+        ></v-icon>
       </v-col>
       <v-col cols="11">
         <div
@@ -64,6 +63,14 @@ export default {
       markdown = markdown.replace(inlineCodeRegex, "<code>$1</code>");
 
       return markdown;
+    },
+
+    getIcon(type) {
+      return type === CONTENT_TYPE.QUESTION ? "mdi-account-tie" : "mdi-robot";
+    },
+
+    getIconColor(type) {
+      return type === CONTENT_TYPE.QUESTION ? "brown" : "light-blue-darken-3";
     },
   },
 };
