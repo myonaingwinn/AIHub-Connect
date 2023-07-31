@@ -1,5 +1,5 @@
 // Content Type
-export const CONTENT_TYPE = {
-  QUESTION: 'QUESTION',
-  ANSWER: 'ANSWER'
+export const ROLE = {
+  ASSISTANT: "assistant",
+  USER: "user",
 };
