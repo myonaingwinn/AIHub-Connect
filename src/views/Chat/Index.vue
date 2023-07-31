@@ -24,7 +24,7 @@ import { scrollToBottom } from "@/utils/scroll";
 import { CONTENT_TYPE } from "@/utils/types";
 import { ERRORS } from "@/utils/errors";
 import GoToBottomBtn from "@/components/GoToBottomBtn.vue";
-import InputFooter from "./components/InputFooter";
+import InputFooter from "@/components/InputFooter";
 import Message from "./components/Message";
 import NotificationMixin from "@/mixin/NotificationMixin";
 
