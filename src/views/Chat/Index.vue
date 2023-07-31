@@ -3,12 +3,7 @@
   <v-row class="mb-16 chat-index">
     <v-col cols="3"> </v-col>
     <v-col cols="6" class="msg-col mb-8">
-      <message
-        v-for="item in qa"
-        :key="item.id"
-        :content="item.content"
-        :type="item.type"
-      />
+      <message v-for="item in qa" :key="item.id" :content="item.content" :role="item.role" />
     </v-col>
     <v-col cols="3">
       <go-to-bottom-btn />
@@ -21,7 +16,7 @@
 import { nanoid } from "nanoid";
 import { chatCompletionRequest } from "@/api/chatCompletionRequest";
 import { scrollToBottom } from "@/utils/scroll";
-import { CONTENT_TYPE } from "@/utils/types";
+import { ROLE } from "@/utils/types";
 import { ERRORS } from "@/utils/errors";
 import GoToBottomBtn from "@/components/GoToBottomBtn.vue";
 import InputFooter from "@/components/InputFooter";
@@ -40,47 +35,26 @@ export default {
   data() {
     return {
       qa: [],
-      CONTENT_TYPE,
-      // slowText: "",
+      ROLE,
       response: "",
     };
   },
 
   methods: {
-    /*  async slowWriting() {
-       this.slowText = "";
-       let index = 0;
-       const delay = 75; // Adjust the delay in milliseconds according to Str().length
-
-       const timer = setInterval(() => {
-         if (index >= this.response.length) {
-           clearInterval(timer);
-         } else {
-           this.slowText += this.response[index];
-           index++;
-         }
-       }, delay);
-     }, */
-
     async submit(prompt) {
       this.$refs.footerRef.setLoadingAndDisable();
 
-      this.qa.push({
-        id: nanoid(),
-        type: CONTENT_TYPE.QUESTION,
-        content: prompt,
-      });
+      this.stackPrompt(prompt, ROLE.USER)
 
-      chatCompletionRequest(prompt)
+      const msg = this.getPureMsg()
+
+      chatCompletionRequest(prompt, msg)
         .then((res) => {
           if (res.status === 200 && res.data.choices[0].message.content) {
             this.response = res.data.choices[0].message.content;
           } else {
             this.showNotification(ERRORS.UNKNOWN_ERROR);
           }
-
-          // this.slowWriting()
-          // console.log("result:", res);
         })
         .catch((error) => {
           if (error.response) {
@@ -96,15 +70,29 @@ export default {
           this.$refs.footerRef.setLoadingAndDisable();
         });
     },
+
+    stackPrompt(prompt, role) {
+      this.qa.push({
+        id: nanoid(),
+        role: role,
+        content: prompt,
+      });
+    },
+
+    getPureMsg() {
+      const newArray = this.qa.map((obj) => {
+        // Create a new object with all properties except 'id'
+        const { id, ...rest } = obj;
+        return rest;
+      });
+
+      return newArray;
+    }
   },
 
   watch: {
     response(newResponse) {
-      this.qa.push({
-        id: nanoid(),
-        type: CONTENT_TYPE.ANSWER,
-        content: newResponse,
-      });
+      this.stackPrompt(newResponse, ROLE.ASSISTANT)
     },
   },
 };

@@ -1,7 +1,7 @@
 import { makeRequest } from "./baseRequest";
 import { getChatCompletionApiUrl, getOpenAIApiKey } from "@/utils/env";
 
-export const chatCompletionRequest = async (prompt) => {
+export const chatCompletionRequest = async (prompt, messages = null) => {
   const url = getChatCompletionApiUrl();
   const method = "POST";
 
@@ -12,7 +12,7 @@ export const chatCompletionRequest = async (prompt) => {
 
   const data = {
     model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: prompt }]
+    messages: messages ? messages : [{ role: "user", content: prompt }],
   };
 
   return makeRequest(url, method, headers, data);
