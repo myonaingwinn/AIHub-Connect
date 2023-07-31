@@ -49,7 +49,7 @@
 
   .textarea-with-icon {
     position: relative;
-    margin: 0 30vw 0;
+    margin: 0 30vw 0 calc(30vw + 4rem);
 
     textarea {
       overflow: auto;
