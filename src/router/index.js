@@ -31,6 +31,20 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/image",
+    component: () => import("@/layouts/default/Default.vue"),
+    children: [
+      {
+        path: "/image",
+        name: "Image",
+        component: () =>
+          import(
+            /* webpackChunkName: "AskMeEverything" */ "@/views/Image/Index.vue"
+          ),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
