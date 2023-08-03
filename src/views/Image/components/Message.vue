@@ -60,7 +60,7 @@ export default {
     },
 
     getIconColor(role) {
-      return this.isUser(role) ? "teal-darken-1" : COLORS.IMAGE;
+      return this.isUser(role) ? COLORS.IMAGE_USER : COLORS.IMAGE;
     },
 
     isUser(role) {
