@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :color="isUser(role) ? 'transparent' : ''" border elevation="1" :class="[
+  <v-sheet :color="isUser(role) ? 'transparent' : 'grey-lighten-4'" border elevation="1" :class="[
     'message-card rounded-lg',
     !isUser(role) ? 'mb-10' : 'mb-2',
   ]">
@@ -9,14 +9,16 @@
         </v-avatar>
       </v-col>
       <v-col cols="11">
-        <div class="card-content pr-5 pb-4" v-html="interpretCode(content)"></div>
+        <div v-if="isUser(role)" class="card-content pr-5 pb-4" v-html="interpretCode(content)"></div>
+        <dynamic-image v-else :imageUrl="content" />
       </v-col>
     </v-row>
   </v-sheet>
 </template>
 
 <script>
-import { COLORS, ROLE } from "@/utils/types";
+import { ROLE, COLORS } from "@/utils/types";
+import DynamicImage from "./Image.vue"
 
 export default {
   props: {
@@ -28,6 +30,10 @@ export default {
       type: String,
       required: true,
     },
+  },
+
+  components: {
+    DynamicImage
   },
 
   data() {
@@ -48,12 +54,13 @@ export default {
       return markdown;
     },
 
+    // TODO: refactor the functions
     getIcon(role) {
       return this.isUser(role) ? "mdi-account" : "mdi-robot";
     },
 
     getIconColor(role) {
-      return this.isUser(role) ? "teal-darken-1" : COLORS.CHAT;
+      return this.isUser(role) ? "teal-darken-1" : COLORS.IMAGE;
     },
 
     isUser(role) {
