@@ -53,7 +53,7 @@ export default {
     },
 
     getIconColor(role) {
-      return this.isUser(role) ? COLORS.CHAT_USER : COLORS.CHAT;
+      return this.isUser(role) ? COLORS.COMPLETION_USER : COLORS.COMPLETION;
     },
 
     isUser(role) {

@@ -10,22 +10,13 @@
     <v-divider></v-divider>
 
     <v-list density="compact" nav :color="COLORS.CHAT">
-      <v-list-item :to="{ name: 'Chat' }" prepend-icon="mdi-chat-question" title="Chat" value="chat"></v-list-item>
+      <v-list-item :to="{ name: 'Chat' }" prepend-icon="mdi-chat-question" title="Chat"></v-list-item>
 
-      <v-list-group value="Text" :color="COLORS.TEXT">
-        <template v-slot:activator="{ props }">
-          <v-list-item v-bind="props" prepend-icon="mdi-format-textbox" title="Text" :color="COLORS.TEXT"></v-list-item>
-        </template>
-        <v-list-item v-for="(title, i) in text" :key="i" :title="title" :value="title" :color="COLORS.TEXT"></v-list-item>
-      </v-list-group>
+      <v-list-item :to="{ name: 'Completion' }" prepend-icon="mdi-creation" title="Completion"
+        :color="COLORS.COMPLETION"></v-list-item>
 
-      <v-list-group value="Image" :color="COLORS.IMAGE">
-        <template v-slot:activator="{ props }">
-          <v-list-item v-bind="props" prepend-icon="mdi-image" title="Image"></v-list-item>
-        </template>
-        <v-list-item :to="{ name: 'Image' }" title="Create image" value="Create image" :color="COLORS.IMAGE">
-        </v-list-item>
-      </v-list-group>
+      <v-list-item :to="{ name: 'Image' }" prepend-icon="mdi-image" title="Generate image"
+        :color="COLORS.IMAGE"></v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
