@@ -25,8 +25,20 @@ const routes = [
         path: "/chat",
         name: "Chat",
         component: () =>
+          import(/* webpackChunkName: "Chat" */ "@/views/Chat/Index.vue"),
+      },
+    ],
+  },
+  {
+    path: "/completion",
+    component: () => import("@/layouts/default/Default.vue"),
+    children: [
+      {
+        path: "/completion",
+        name: "Completion",
+        component: () =>
           import(
-            /* webpackChunkName: "AskMeEverything" */ "@/views/Chat/Index.vue"
+            /* webpackChunkName: "Completion" */ "@/views/Completion/Index.vue"
           ),
       },
     ],
@@ -39,9 +51,7 @@ const routes = [
         path: "/image",
         name: "Image",
         component: () =>
-          import(
-            /* webpackChunkName: "AskMeEverything" */ "@/views/Image/Index.vue"
-          ),
+          import(/* webpackChunkName: "Image" */ "@/views/Image/Index.vue"),
       },
     ],
   },
@@ -50,6 +60,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.VITE_BASE_URL),
   routes,
+});
+
+// Add navigation guard for handling unmatched routes
+router.beforeEach((to, from, next) => {
+  if (to.matched.length === 0) {
+    next("/");
+  } else {
+    next();
+  }
 });
 
 export default router;

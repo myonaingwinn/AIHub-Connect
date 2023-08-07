@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :color="isUser(role) ? 'transparent' : 'grey-lighten-4'" border elevation="1" :class="[
+  <v-sheet :color="isUser(role) ? 'transparent' : ''" border elevation="1" :class="[
     'message-card rounded-lg',
     !isUser(role) ? 'mb-10' : 'mb-2',
   ]">
