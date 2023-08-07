@@ -16,12 +16,13 @@
 import { nanoid } from "nanoid";
 import { chatCompletionRequest } from "@/api/chatCompletionRequest";
 import { scrollToBottom } from "@/utils/scroll";
-import { ROLE } from "@/utils/types";
+import { ROLE, SESSION_KEYS } from "@/utils/types";
 import { ERRORS } from "@/utils/errors";
 import GoToBottomBtn from "@/components/GoToBottomBtn.vue";
 import InputFooter from "@/components/InputFooter";
 import Message from "./components/Message";
 import NotificationMixin from "@/mixin/NotificationMixin";
+import { getFromSession, saveToSession } from "@/utils/session";
 
 export default {
   mixins: [NotificationMixin],
@@ -77,6 +78,8 @@ export default {
         role: role,
         content: prompt,
       });
+
+      saveToSession(SESSION_KEYS.CHAT, this.qa)
     },
 
     getPureMsg() {
@@ -95,5 +98,10 @@ export default {
       this.stackPrompt(newResponse, ROLE.ASSISTANT)
     },
   },
+
+  created() {
+    const data = getFromSession(SESSION_KEYS.CHAT);
+    this.qa = data ?? this.qa;
+  }
 };
 </script>

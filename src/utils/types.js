@@ -13,3 +13,10 @@ export const COLORS = {
   IMAGE: "blue-darken-1",
   IMAGE_USER: "lime-darken-3",
 };
+
+// Session Keys
+export const SESSION_KEYS = {
+  CHAT: "chat",
+  COMPLETION: "completion",
+  IMAGE: "image",
+};
