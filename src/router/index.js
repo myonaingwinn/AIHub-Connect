@@ -64,6 +64,9 @@ const router = createRouter({
 
 // Add navigation guard for handling unmatched routes
 router.beforeEach((to, from, next) => {
+  const pageTitle = to.name ? to.name : "AIHub Connect";
+  document.title = `${pageTitle} : AIHub Connect`;
+
   if (to.matched.length === 0) {
     next("/");
   } else {
