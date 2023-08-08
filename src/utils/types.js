@@ -6,12 +6,19 @@ export const ROLE = {
 
 // Global Colors
 export const COLORS = {
-  CHAT: "pink-lighten-1",
-  CHAT_USER: "teal-darken-1",
-  COMPLETION: "purple",
-  COMPLETION_USER: "yellow-darken-4",
-  IMAGE: "blue-darken-1",
-  IMAGE_USER: "lime-darken-3",
+  // Icon Color
+  CHAT: "purple",
+  CHAT_USER: "deep-purple-lighten-1",
+  COMPLETION: "deep-purple",
+  COMPLETION_USER: "indigo-lighten-1",
+  IMAGE: "indigo",
+  IMAGE_USER: "blue-darken-1",
+
+  // Bg Color
+  CHT_BG: "bg-purple-lighten-5",
+  CPL_BG: "bg-deep-purple-lighten-5",
+  IMG_BG: "bg-indigo-lighten-5",
+  DFT_BG: "bg-grey-lighten-5",
 };
 
 // Session Keys

@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="footer rounded-t-lg bg-grey-lighten-4">
+  <v-footer class="footer rounded-t-lg bg-blue-grey-lighten-5">
     <v-row align="center" justify="center">
       <v-col>
         <v-textarea v-model="prompt" variant="outlined" :color="color" rows="1" max-rows="6" row-height="15" auto-grow

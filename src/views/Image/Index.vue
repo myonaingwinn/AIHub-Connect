@@ -1,6 +1,6 @@
 <template>
   <notification ref="notificationRef" />
-  <v-row class="mb-16 chat-index">
+  <v-row class="mb-16 image-index">
     <v-col cols="3"> </v-col>
     <v-col cols="6" class="msg-col mb-8">
       <message v-for="item in qa" :key="item.id" :content="item.content" :role="item.role" />
