@@ -1,9 +1,10 @@
 <template>
-  <v-navigation-drawer expand-on-hover rail permanent class="">
+  <v-navigation-drawer expand-on-hover rail permanent class="drawer">
     <v-list>
       <v-list-item :to="{ name: 'Home' }">
-        <div class="text-h6">AIHub Connect</div>
-        <!-- TODO: change font -->
+        <div class="text-h5 text-center font-weight-bold app-name">
+          AIHub Connect
+        </div>
       </v-list-item>
     </v-list>
 

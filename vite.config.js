@@ -1,6 +1,7 @@
 // Plugins
 import vue from "@vitejs/plugin-vue";
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import { VitePluginFonts } from "vite-plugin-fonts";
 
 // Utilities
 import { defineConfig } from "vite";
@@ -17,6 +18,11 @@ export default defineConfig({
       autoImport: true,
       styles: {
         configFile: "src/styles/settings.scss",
+      },
+    }),
+    VitePluginFonts({
+      google: {
+        families: ["Montserrat Alternates", "Cormorant Garamond", "Roboto"],
       },
     }),
   ],
