@@ -17,3 +17,8 @@ export const getCompletionApiUrl = () => {
 export const getCreateImageApiUrl = () => {
   return import.meta.env.VITE_CREATE_IMAGE_API_URL;
 };
+
+// Google Client Id
+export const getGoogleClientId = () => {
+  return import.meta.env.VITE_GOOGLE_CLIENT_ID;
+};

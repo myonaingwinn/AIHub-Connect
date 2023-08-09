@@ -3,15 +3,12 @@
 }
 
 .drawer {
-  .app-name {
-    font-family: "Montserrat Alternates", "Cormorant Garamond", "Roboto" !important;
-    width: inherit;
-    overflow: hidden;
-    white-space: nowrap;
+  .v-list-item-title {
+    font-size: 15.5px;
   }
 
-  .v-list-item-title {
-    font-size: 14px;
+  .btn-signout:hover {
+    color: #F44336;
   }
 }
 
