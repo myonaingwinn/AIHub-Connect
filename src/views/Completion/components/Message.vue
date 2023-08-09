@@ -9,7 +9,7 @@
         </v-avatar>
       </v-col>
       <v-col cols="11">
-        <div class="card-content pr-5 pb-4" v-html="interpretCode(content)"></div>
+        <div class="card-content pt-2 pr-6 pb-5" v-html="interpretCode(content)"></div>
       </v-col>
     </v-row>
   </v-sheet>

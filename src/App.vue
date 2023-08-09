@@ -6,6 +6,7 @@
 import { COLORS } from './utils/types';
 
 const ROUTE_CLASSES = {
+  '/': COLORS.HME_BG,
   '/chat': COLORS.CHT_BG,
   '/completion': COLORS.CPL_BG,
   '/image': COLORS.IMG_BG,

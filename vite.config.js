@@ -22,7 +22,7 @@ export default defineConfig({
     }),
     VitePluginFonts({
       google: {
-        families: ["Montserrat Alternates", "Cormorant Garamond", "Roboto"],
+        families: ["Roboto"],
       },
     }),
   ],
