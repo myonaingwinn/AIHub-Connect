@@ -88,7 +88,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !appStore.isAuthenticated) {
     next({ name: "Auth" });
   } else if (to.name === "Auth" && appStore.isAuthenticated) {
-    next(from.path || "/");
+    next(from.path || { name: "Home" });
   } else {
     next();
   }
