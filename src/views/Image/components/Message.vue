@@ -9,7 +9,7 @@
         </v-avatar>
       </v-col>
       <v-col cols="11">
-        <div v-if="isUser(role)" class="card-content pr-5 pb-4" v-html="interpretCode(content)"></div>
+        <div v-if="isUser(role)" class="card-content pt-2 pr-6 pb-5" v-html="interpretCode(content)"></div>
         <dynamic-image v-else :imageUrl="content" />
       </v-col>
     </v-row>

@@ -7,6 +7,7 @@ export const ROLE = {
 // Global Colors
 export const COLORS = {
   // Icon Color
+  HOME: "pink",
   CHAT: "purple",
   CHAT_USER: "deep-purple-lighten-1",
   COMPLETION: "deep-purple",
@@ -15,6 +16,7 @@ export const COLORS = {
   IMAGE_USER: "blue-darken-1",
 
   // Bg Color
+  HME_BG: "bg-pink-lighten-5",
   CHT_BG: "bg-purple-lighten-5",
   CPL_BG: "bg-deep-purple-lighten-5",
   IMG_BG: "bg-indigo-lighten-5",

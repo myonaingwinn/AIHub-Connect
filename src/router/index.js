@@ -1,5 +1,6 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
+import { useAppStore } from "@/store/app";
 
 const routes = [
   {
@@ -55,7 +56,23 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/auth",
+    name: "Auth",
+    component: () => import("@/views/SignIn/Index.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: "/", // Redirect to the home page for any unmatched routes
+  },
 ];
+
+// Set the requiresAuth meta field for all routes except /auth
+routes.forEach((route) => {
+  if (route.path !== "/auth") {
+    route.meta = { requiresAuth: true };
+  }
+});
 
 const router = createRouter({
   history: createWebHistory(process.env.VITE_BASE_URL),
@@ -64,11 +81,14 @@ const router = createRouter({
 
 // Add navigation guard for handling unmatched routes
 router.beforeEach((to, from, next) => {
-  const pageTitle = to.name ? to.name : "AIHub Connect";
+  const appStore = useAppStore();
+  const pageTitle = to.name ? to.name : "Sign in with Google";
   document.title = `${pageTitle} : AIHub Connect`;
 
-  if (to.matched.length === 0) {
-    next("/");
+  if (to.meta.requiresAuth && !appStore.isAuthenticated) {
+    next({ name: "Auth" });
+  } else if (to.name === "Auth" && appStore.isAuthenticated) {
+    next(from.path || { name: "Home" });
   } else {
     next();
   }
