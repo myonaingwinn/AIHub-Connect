@@ -1,7 +1,7 @@
 import { makeRequest } from "./baseRequest";
 import { getCreateImageApiUrl, getOpenAIApiKey } from "@/utils/env";
 
-export const createImageRequest = async (prompt) => {
+export const createImageRequest = (prompt) => {
   const url = getCreateImageApiUrl();
   const method = "POST";
 

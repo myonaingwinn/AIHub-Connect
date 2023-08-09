@@ -1,7 +1,7 @@
 import { makeRequest } from "./baseRequest";
 import { getChatCompletionApiUrl, getOpenAIApiKey } from "@/utils/env";
 
-export const chatCompletionRequest = async (prompt, messages = null) => {
+export const chatCompletionRequest = (prompt, messages = null) => {
   const url = getChatCompletionApiUrl();
   const method = "POST";
 

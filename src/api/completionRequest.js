@@ -1,7 +1,7 @@
 import { makeRequest } from "./baseRequest";
 import { getCompletionApiUrl, getOpenAIApiKey } from "@/utils/env";
 
-export const completionRequest = async (prompt) => {
+export const completionRequest = (prompt) => {
   const url = getCompletionApiUrl();
   const method = "POST";
 
