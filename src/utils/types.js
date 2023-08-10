@@ -29,3 +29,10 @@ export const SESSION_KEYS = {
   COMPLETION: "completion",
   IMAGE: "image",
 };
+
+// Counts
+export const MAX_COUNT = {
+  chat: 10,
+  completion: 5,
+  image: 5,
+};
