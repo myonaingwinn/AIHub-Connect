@@ -38,7 +38,6 @@ export async function saveUser(userObj) {
 
     // Update the login count property
     await updateDoc(userDocRef, { login_count: increment(1) });
-    // await updateUser(userObj.email, MAX_COUNT_TYPES.COMPLETION);
     console.log("Login count updated");
   }
 
@@ -55,7 +54,7 @@ export async function getUser(email) {
     const userDoc = querySnapshot.docs[0];
     return { id: userDoc.id, ...userDoc.data() };
   } else {
-    console.log("User not found");
+    // console.log("User not found");
     return null;
   }
 }
@@ -77,10 +76,10 @@ export async function updateUser(email, countType) {
     // Get user and save to local
     await getUserAndSaveToLocal(email);
 
-    console.log(`User's ${countType} count updated successfully`);
-  } else {
+    // console.log(`User's ${countType} count updated successfully`);
+  } /* else {
     console.log(`User's ${countType} count is already 0 or less`);
-  }
+  } */
 }
 
 export async function getUserAndSaveToLocal(email) {
