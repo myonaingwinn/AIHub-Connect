@@ -31,8 +31,14 @@ export const SESSION_KEYS = {
 };
 
 // Counts
-export const MAX_COUNT = {
+export const MAX_COUNT_VALUES = {
   chat: 10,
   completion: 5,
   image: 5,
+};
+
+export const MAX_COUNT_TYPES = {
+  CHAT: "chat",
+  COMPLETION: "completion",
+  IMAGE: "image",
 };

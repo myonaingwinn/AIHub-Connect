@@ -2,50 +2,99 @@ import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
-  addDoc,
   getDocs,
   query,
   where,
+  setDoc,
+  updateDoc,
+  doc,
+  increment,
 } from "firebase/firestore/lite";
 import { getFirebaseConfig } from "@/utils/env";
-import { MAX_COUNT } from "@/utils/types";
+import { MAX_COUNT_VALUES } from "@/utils/types";
+import { useAppStore } from "@/store/app";
 
 const firebaseConfig = getFirebaseConfig();
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const usersCollection = collection(db, "users");
 
-export async function saveUser(userObject) {
-  const existingUsers = await getUser(userObject);
+export async function saveUser(userObj) {
+  const userQuery = query(usersCollection, where("email", "==", userObj.email));
 
-  if (existingUsers.size === 0) {
-    // If the user doesn't exist, add them to the 'users' collection
-    try {
-      userObject.max_count = MAX_COUNT;
-      const docRef = await addDoc(usersCollection, userObject);
+  const querySnapshot = await getDocs(userQuery);
 
-      console.log("User added with ID:", docRef.id);
-    } catch (error) {
-      console.error("Error adding user:", error);
-    }
+  if (querySnapshot.empty) {
+    userObj.login_count = 1;
+    userObj.max_count = MAX_COUNT_VALUES;
+
+    const userDocRef = doc(usersCollection);
+    await setDoc(userDocRef, userObj);
+    console.log("User saved successfully");
   } else {
-    console.log("User already exists:", existingUsers.docs[0].id);
+    console.log("User already exists");
+    const userDoc = querySnapshot.docs[0];
+    const userDocRef = doc(usersCollection, userDoc.id);
+
+    // Update the login count property
+    await updateDoc(userDocRef, { login_count: increment(1) });
+    // await updateUser(userObj.email, MAX_COUNT_TYPES.COMPLETION);
+    console.log("Login count updated");
+  }
+
+  await getUserAndSaveToLocal(userObj.email);
+}
+
+// Function to get a user by their email
+export async function getUser(email) {
+  const userQuery = query(usersCollection, where("email", "==", email));
+
+  const querySnapshot = await getDocs(userQuery);
+
+  if (!querySnapshot.empty) {
+    const userDoc = querySnapshot.docs[0];
+    return { id: userDoc.id, ...userDoc.data() };
+  } else {
+    console.log("User not found");
+    return null;
   }
 }
 
-export async function updateUser(userObject, maxCount) {
-  console.log('🚀 ~ file: firebase.js:37 ~ updateUser ~ maxCount:', userObject, maxCount)
-  const user = getUser(userObject);
-  if (user.max_count[maxCount] > 0)
-    console.log("user.max_count[maxCount]", user.max_count[maxCount]);
+// Function to update a user by their email
+export async function updateUser(email, countType) {
+  const userData = await getUser(email);
+
+  if (userData && userData.max_count && userData.max_count[countType] > 0) {
+    const newCount = userData.max_count[countType] - 1;
+
+    const userDocRef = doc(usersCollection, userData.id);
+
+    // Update the specific count property in the user's document
+    await updateDoc(userDocRef, {
+      ["max_count." + countType]: newCount,
+    });
+
+    // Get user and save to local
+    await getUserAndSaveToLocal(email);
+
+    console.log(`User's ${countType} count updated successfully`);
+  } else {
+    console.log(`User's ${countType} count is already 0 or less`);
+  }
 }
 
-export async function getUser(userObject) {
-  const usersQuery = query(
-    usersCollection,
-    where("email", "==", userObject.email),
-  );
-  const existingUser = await getDocs(usersQuery);
+export async function getUserAndSaveToLocal(email) {
+  const appStore = useAppStore();
+  const user = await getUser(email);
+  appStore.setUser(user);
+}
 
-  return existingUser;
+export async function isValidToRequest(countType) {
+  const userData = await getUser(getUserEmail());
+  return userData.max_count[countType] > 0;
+}
+
+export function getUserEmail() {
+  const appStore = useAppStore();
+  return appStore.user.email;
 }
