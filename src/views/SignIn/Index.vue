@@ -1,4 +1,3 @@
-
 <template>
   <v-row>
     <v-col cols="4"></v-col>
@@ -12,8 +11,9 @@
 </template>
 
 <script>
-import { decodeCredential } from 'vue3-google-login'
-import { useAppStore } from '@/store/app';
+import { decodeCredential } from "vue3-google-login";
+import { useAppStore } from "@/store/app";
+import { saveUser } from "@/api/firebase";
 
 export default {
   data() {
@@ -22,18 +22,21 @@ export default {
       callback: (response) => {
         if (!response) return;
 
-        const user = decodeCredential(response.credential)
-        this.onSignIn(user)
-      }
-    }
+        const user = decodeCredential(response.credential);
+        this.onSignIn(user);
+      },
+    };
   },
 
   methods: {
-    onSignIn(googleUser) {
-      this.appStore.setUser(googleUser);
+    async onSignIn(googleUser) {
+      await saveUser(googleUser);
+
       if (this.appStore.isAuthenticated)
-        this.$router.replace({ name: 'Home' }).catch(() => { });
+        this.$router.replace({ name: "Home" }).catch(() => {});
+
+      this.$router.go(0);
     },
-  }
-}
+  },
+};
 </script>
