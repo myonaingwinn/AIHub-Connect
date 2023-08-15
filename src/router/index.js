@@ -59,7 +59,7 @@ const routes = [
   {
     path: "/auth",
     name: "Auth",
-    component: () => import("@/views/SignIn/Index.vue"),
+    component: () => import("@/views/Auth/Index.vue"),
   },
   {
     path: "/:pathMatch(.*)*",

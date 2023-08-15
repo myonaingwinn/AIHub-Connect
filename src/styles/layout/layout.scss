@@ -102,6 +102,18 @@
   transform: translate(40vh, 82vh);
 }
 
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  .pp-link {
+    font-size: 14px !important;
+    text-decoration: none;
+  }
+}
+
 /* Scroll style
 *
 * Firefox */
