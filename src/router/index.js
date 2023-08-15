@@ -62,6 +62,11 @@ const routes = [
     component: () => import("@/views/Auth/Index.vue"),
   },
   {
+    path: "/privacy-policy",
+    name: "PrivacyPolicy",
+    component: () => import("@/views/PrivacyPolicy/Index.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     redirect: "/", // Redirect to the home page for any unmatched routes
   },
@@ -84,6 +89,11 @@ router.beforeEach((to, from, next) => {
   const appStore = useAppStore();
   const pageTitle = to.name ? to.name : "Sign in with Google";
   document.title = `${pageTitle} : AIHub Connect`;
+
+  if (to.name === "Auth" || to.name === "PrivacyPolicy") {
+    next();
+    return;
+  }
 
   if (to.meta.requiresAuth && !appStore.isAuthenticated) {
     next({ name: "Auth" });
