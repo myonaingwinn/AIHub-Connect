@@ -34,3 +34,8 @@ export const getFirebaseConfig = () => {
     appId: import.meta.env.VITE_FB_APP_ID,
   };
 };
+
+// Email
+export const getContactEmail = () => {
+  return import.meta.env.VITE_CONTACT_EMAIL;
+};
