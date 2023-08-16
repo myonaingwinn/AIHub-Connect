@@ -22,7 +22,7 @@ export default defineConfig({
     }),
     VitePluginFonts({
       google: {
-        families: ["Roboto"],
+        families: ["Nixie One", "Moirai One", "Ubuntu", "Roboto"],
       },
     }),
   ],
