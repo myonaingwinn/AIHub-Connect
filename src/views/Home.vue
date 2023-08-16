@@ -25,7 +25,6 @@
 </template>
 
 <script>
-// import HelloWorld from "@/components/HelloWorld.vue";
 import IconCard from "@/components/IconCard.vue";
 import NameDescription from "@/components/NameDescription.vue";
 import { ROUTE_NAMES } from "@/utils/types";
