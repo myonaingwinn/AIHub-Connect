@@ -1,11 +1,6 @@
 <template>
   <v-navigation-drawer expand-on-hover rail permanent class="drawer" @update:rail="onRailUpdated">
     <v-list>
-      <!-- <v-list-item :to="{ name: 'Home' }">
-        <div class="text-h5 font-weight-bold app-name mb-4">
-          AIHub Connect
-        </div>
-      </v-list-item> -->
       <v-list-item :prepend-avatar="picture"></v-list-item>
       <v-list-item v-if="isRailed" :title="name" :subtitle="email"></v-list-item>
     </v-list>
@@ -13,16 +8,18 @@
     <v-divider></v-divider>
 
     <v-list density="compact" nav>
-      <v-list-item :to="{ name: 'Home' }" prepend-icon="mdi-home" title="Home" :color="COLORS.HOME">
+      <v-list-item :to="{ name: ROUTE_NAMES.HOME }" prepend-icon="mdi-home" title="Home" :color="COLORS.HOME">
       </v-list-item>
 
-      <v-list-item :to="{ name: 'Chat' }" prepend-icon="mdi-chat-question" title="Chat" :color="COLORS.CHAT">
+      <v-list-item :to="{ name: ROUTE_NAMES.CHAT }" prepend-icon="mdi-chat-question" title="Chat" :color="COLORS.CHAT">
       </v-list-item>
 
-      <v-list-item :to="{ name: 'Completion' }" prepend-icon="mdi-creation" title="Completion" :color="COLORS.COMPLETION">
+      <v-list-item :to="{ name: ROUTE_NAMES.COMPLETION }" prepend-icon="mdi-creation" title="Completion"
+        :color="COLORS.COMPLETION">
       </v-list-item>
 
-      <v-list-item :to="{ name: 'Image' }" prepend-icon="mdi-image" title="Generate image" :color="COLORS.IMAGE">
+      <v-list-item :to="{ name: ROUTE_NAMES.IMAGE }" prepend-icon="mdi-image" title="Generate image"
+        :color="COLORS.IMAGE">
       </v-list-item>
     </v-list>
 
@@ -39,7 +36,7 @@
 
 <script>
 import { useAppStore } from '@/store/app';
-import { COLORS } from '@/utils/types';
+import { COLORS, ROUTE_NAMES } from '@/utils/types';
 import ConfirmDialog from '@/components/ConfirmDialog.vue';
 
 export default {
@@ -62,6 +59,7 @@ export default {
       picture,
       isRailed: false,
       isSignedOut: false,
+      ROUTE_NAMES,
     }
   },
 
