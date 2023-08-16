@@ -1,7 +1,7 @@
 <template>
     <div class="privacy-policy">
-        <v-sheet class="d-flex flex-column pa-10" min-width="25vw" max-width="40vw" border rounded="lg">
-            <div class="text-h5 font-weight-medium" align="center">Privacy Policy</div>
+        <v-sheet class="d-flex flex-column pa-10" min-width="25vw" max-width="40vw" border rounded="lg" elevation="4">
+            <div class="pp-heading text-h5 font-weight-medium" align="center">Privacy Policy</div>
 
             <div class="text-h6 mt-5 font-weight-medium">Introduction</div>
             <li>
