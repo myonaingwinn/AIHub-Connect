@@ -30,15 +30,15 @@ export async function saveUser(userObj) {
 
     const userDocRef = doc(usersCollection);
     await setDoc(userDocRef, userObj);
-    console.log("User saved successfully");
+    // console.log("User saved successfully");
   } else {
-    console.log("User already exists");
+    // console.log("User already exists");
     const userDoc = querySnapshot.docs[0];
     const userDocRef = doc(usersCollection, userDoc.id);
 
     // Update the login count property
     await updateDoc(userDocRef, { login_count: increment(1) });
-    console.log("Login count updated");
+    // console.log("Login count updated");
   }
 
   await getUserAndSaveToLocal(userObj.email);
