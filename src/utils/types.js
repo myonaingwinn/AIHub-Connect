@@ -42,3 +42,11 @@ export const MAX_COUNT_TYPES = {
   COMPLETION: "completion",
   IMAGE: "image",
 };
+
+// Route names
+export const ROUTE_NAMES = {
+  HOME: "Home",
+  CHAT: "Chat",
+  COMPLETION: "Completion",
+  IMAGE: "Image",
+};
