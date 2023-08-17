@@ -1,21 +1,34 @@
 <template>
-  <v-sheet border elevation="1" :class="[
-    'message-card rounded-lg',
-    !isUser(role) ? 'mb-10' : 'mb-2',
-  ]">
+  <v-sheet
+    border
+    elevation="1"
+    :class="['message-card rounded-lg', !isUser(role) ? 'mb-10' : 'mb-2']"
+  >
     <v-row>
       <v-col cols="1">
-        <v-avatar :icon="getIcon(role)" :color="getIconColor(role)" class="msg-card-icons mb-3">
+        <v-avatar
+          v-if="!isUser(role)"
+          :icon="getIcon(role)"
+          :color="getIconColor(role)"
+          class="msg-card-icons mb-3"
+        >
+        </v-avatar>
+        <v-avatar v-else class="msg-card-icons">
+          <v-img :src="picUrl" alt="User Photo" />
         </v-avatar>
       </v-col>
       <v-col cols="11">
-        <div class="card-content pt-2 pr-6 pb-5" v-html="interpretCode(content)"></div>
+        <div
+          class="card-content pt-2 pr-6 pb-5"
+          v-html="interpretCode(content)"
+        ></div>
       </v-col>
     </v-row>
   </v-sheet>
 </template>
 
 <script>
+import { useAppStore } from "@/store/app";
 import { COLORS, ROLE } from "@/utils/types";
 
 export default {
@@ -31,7 +44,7 @@ export default {
   },
 
   data() {
-    return { ROLE, COLORS };
+    return { ROLE, COLORS, picUrl: useAppStore().user.picture };
   },
 
   methods: {

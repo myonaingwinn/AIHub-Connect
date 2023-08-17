@@ -1,15 +1,28 @@
 <template>
-  <v-sheet border elevation="1" :class="[
-    'message-card rounded-lg',
-    !isUser(role) ? 'mb-10' : 'mb-2',
-  ]">
+  <v-sheet
+    border
+    elevation="1"
+    :class="['message-card rounded-lg', !isUser(role) ? 'mb-10' : 'mb-2']"
+  >
     <v-row>
       <v-col cols="1">
-        <v-avatar :icon="getIcon(role)" :color="getIconColor(role)" class="msg-card-icons mb-3">
+        <v-avatar
+          v-if="!isUser(role)"
+          :icon="getIcon(role)"
+          :color="getIconColor(role)"
+          class="msg-card-icons mb-3"
+        >
+        </v-avatar>
+        <v-avatar v-else class="msg-card-icons">
+          <v-img :src="picUrl" alt="User Photo" />
         </v-avatar>
       </v-col>
       <v-col cols="11">
-        <div v-if="isUser(role)" class="card-content pt-2 pr-6 pb-5" v-html="interpretCode(content)"></div>
+        <div
+          v-if="isUser(role)"
+          class="card-content pt-2 pr-6 pb-5"
+          v-html="interpretCode(content)"
+        ></div>
         <dynamic-image v-else :imageUrl="content" />
       </v-col>
     </v-row>
@@ -18,7 +31,8 @@
 
 <script>
 import { ROLE, COLORS } from "@/utils/types";
-import DynamicImage from "./Image.vue"
+import DynamicImage from "./Image.vue";
+import { useAppStore } from "@/store/app";
 
 export default {
   props: {
@@ -33,11 +47,11 @@ export default {
   },
 
   components: {
-    DynamicImage
+    DynamicImage,
   },
 
   data() {
-    return { ROLE, COLORS };
+    return { ROLE, COLORS, picUrl: useAppStore().user.picture };
   },
 
   methods: {
