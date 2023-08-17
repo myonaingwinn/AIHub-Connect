@@ -8,7 +8,7 @@
   }
 
   .btn-signout:hover {
-    color: #F44336;
+    color: #f44336;
   }
 }
 
@@ -26,7 +26,7 @@
   .v-img__error {
     display: flex;
     align-items: center;
-    background: #9E9E9E;
+    background: #9e9e9e;
     justify-content: center;
 
     i {
@@ -51,7 +51,7 @@
   }
 
   code {
-    padding: .2em .4em;
+    padding: 0.2em 0.4em;
     border-radius: 6px;
     background: #a3aab133;
   }
@@ -108,7 +108,7 @@
   align-items: center;
   min-height: 100vh;
 
-  background: linear-gradient(to bottom right, #F48FB1, #42A5F5);
+  background: linear-gradient(to bottom right, #f48fb1, #42a5f5);
   color: transparent;
 }
 
@@ -116,7 +116,13 @@
   .pp-link {
     font-size: 14px !important;
     text-decoration: none;
+    color: #1867c0;
   }
+}
+
+.ppl-link {
+  text-decoration: none;
+  color: #1867c0;
 }
 
 .privacy-policy {
@@ -135,13 +141,13 @@
     width: 100%;
     margin-top: 15vh;
   }
-}
 
-.cuz-sheet {
-  width: 300px;
-  height: 200px;
-  color: #fff;
-  background: linear-gradient(130deg, #F48FB1, #64B5F6);
+  .cuz-sheet {
+    width: 300px;
+    height: 200px;
+    color: #fff;
+    background: linear-gradient(140deg, #f48fb1, #64b5f6);
+  }
 }
 
 // app name and description
@@ -155,10 +161,16 @@
 }
 
 .app-name,
-.app-description,
+.app-description {
+  background-image: linear-gradient(130deg, #f48fb1, #42a5f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .pp-heading,
 .text-h6.mt-5.font-weight-medium {
-  background-image: linear-gradient(to bottom right, #F48FB1, #42A5F5);
+  background-image: linear-gradient(to bottom right, #f48fb1, #1e88e5);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -168,9 +180,8 @@
   font-family: -apple-system, Roboto, Ubuntu, 'Segoe UI', 'Cantarell', 'Noto Sans', sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-/* Scroll style
-*
-* Firefox */
+/* Scroll style */
+/* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #bdbdbd inherit;
