@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="cuz-sheet"
-    :class="[routeName !== 'Image' ? 'mr-4' : '']"
+    :class="[routeName !== 'Image' ? 'mr-5' : '']"
     width="300"
     height="150"
     :prepend-icon="icon"
