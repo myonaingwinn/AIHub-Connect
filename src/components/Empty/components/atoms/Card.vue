@@ -2,7 +2,7 @@
   <v-card
     v-if="submit"
     class="bg-transparent pa-2 mt-3 d-flex"
-    width="19vw"
+    width="22vw"
     rounded="lg"
     align="left"
     justify-end
