@@ -1,8 +1,8 @@
 <template>
   <notification ref="notificationRef" />
   <v-row class="mb-16 chat-index">
-    <v-col cols="3"> </v-col>
-    <v-col cols="6" class="msg-col mb-8">
+    <v-col cols="1" sm="2" md="2" lg="2" xl="3" xxl="3"> </v-col>
+    <v-col cols="10" sm="8" md="8" lg="8" xl="6" xxl="6" class="msg-col mb-8">
       <message
         v-if="qa.length > 0"
         v-for="item in qa"
@@ -10,9 +10,9 @@
         :content="item.content"
         :role="item.role"
       />
-      <empty v-else />
+      <empty v-else :type="SESSION_KEYS.CHAT" :submit="submit" />
     </v-col>
-    <v-col cols="3">
+    <v-col cols="1" sm="2" md="2" lg="2" xl="3" xxl="3">
       <go-to-bottom-btn />
     </v-col>
   </v-row>
@@ -48,6 +48,7 @@ export default {
       qa: [],
       ROLE,
       response: "",
+      SESSION_KEYS,
     };
   },
 
