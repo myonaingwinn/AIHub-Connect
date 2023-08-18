@@ -4,11 +4,13 @@
     <v-col cols="3"> </v-col>
     <v-col cols="6" class="msg-col mb-8">
       <message
+        v-if="qa.length > 0"
         v-for="item in qa"
         :key="item.id"
         :content="item.content"
         :role="item.role"
       />
+      <empty v-else />
     </v-col>
     <v-col cols="3">
       <go-to-bottom-btn />
@@ -26,6 +28,7 @@ import { ERRORS } from "@/utils/errors";
 import GoToBottomBtn from "@/components/GoToBottomBtn.vue";
 import InputFooter from "@/components/InputFooter";
 import Message from "./components/Message";
+import Empty from "@/components/Empty/Index.vue";
 import NotificationMixin from "@/mixin/NotificationMixin";
 import { getFromSession, saveToSession } from "@/utils/session";
 import { getUserEmail, isValidToRequest, updateUser } from "@/api/firebase";
@@ -37,6 +40,7 @@ export default {
     GoToBottomBtn,
     InputFooter,
     Message,
+    Empty,
   },
 
   data() {

@@ -176,6 +176,15 @@
   color: transparent;
 }
 
+.empty {
+  padding-top: 6vh;
+  font-size: 15px;
+
+  .icon-col {
+    margin-top: 7vh;
+  }
+}
+
 * {
   font-family: -apple-system, Roboto, Ubuntu, 'Segoe UI', 'Cantarell', 'Noto Sans', sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
