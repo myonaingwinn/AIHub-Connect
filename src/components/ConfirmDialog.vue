@@ -1,7 +1,7 @@
 <template>
-  <v-dialog v-model="dialog" persistent width="auto">
+  <v-dialog v-model="dialog" persistent width="38vw">
     <v-card title="Are you sure you want to sign out?">
-      <v-card-text>Please note that if you close this tab or browser, your chat history will be lost. <br />However, if
+      <v-card-text>Please note that if you close this tab or browser, your chat history will be lost. However, if
         you don't close this tab and sign in again, you'll be able to access your chat history.</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
