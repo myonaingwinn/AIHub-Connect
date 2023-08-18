@@ -6,7 +6,7 @@
         :icon="icons.example"
         :label="labels.example"
         :data="examples"
-        :iconColor="COLORS.CHAT"
+        :iconColor="iconColor"
         :submit="submit"
       />
       <icon-col
@@ -64,6 +64,13 @@ export default {
       limitation: "Limitations",
     };
 
+    const iconColor =
+      this.type === SESSION_KEYS.CHAT
+        ? COLORS.CHAT
+        : this.type === SESSION_KEYS.COMPLETION
+        ? COLORS.COMPLETION
+        : COLORS.IMAGE;
+
     const examples =
       this.type === SESSION_KEYS.CHAT
         ? getChatPrompt()
@@ -80,7 +87,7 @@ export default {
 
     const limitations = getLimitation();
 
-    return { icons, labels, examples, capabilities, limitations, COLORS };
+    return { icons, labels, examples, capabilities, limitations, COLORS, iconColor };
   },
 };
 </script>
