@@ -11,7 +11,7 @@
           row-height="15"
           auto-grow
           autofocus
-          class="textarea-with-icon mt-3"
+          class="textarea-with-icon mt-4"
           :loading="loading"
           :disabled="disabled"
           @keydown.enter="handleEnterKey"
