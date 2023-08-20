@@ -7,11 +7,9 @@
           variant="outlined"
           :color="color"
           rows="1"
-          max-rows="6"
-          row-height="15"
-          auto-grow
           autofocus
           class="textarea-with-icon mt-4"
+          :style="{ maxHeight: '200px' }"
           :loading="loading"
           :disabled="disabled"
           @keydown.enter="handleEnterKey"
