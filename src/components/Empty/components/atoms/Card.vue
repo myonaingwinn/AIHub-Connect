@@ -9,8 +9,10 @@
     border
     @click="onSubmit"
   >
-    {{ content }}
-    <v-icon :color="iconColor">mdi-send</v-icon>
+    <div class="d-flex align-center justify-space-between w-100">
+      <div>{{ content }}</div>
+      <v-icon :color="iconColor">mdi-send</v-icon>
+    </div>
   </v-card>
   <v-card
     v-else
