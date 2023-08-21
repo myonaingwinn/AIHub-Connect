@@ -2,6 +2,19 @@
 
 ## Project setup
 
+### Clone project
+```
+git clone https://github.com/myonaingwinn/AIHub-Connect.git
+```
+
+### Create .env file and get Google configuration
+```
+cp .env.local.example .env.local
+```
+
+Visit https://console.cloud.google.com/ and setup your configuration there. Once configured, set it to .env.local file.
+
+### Install the packages
 ```
 # yarn
 yarn
