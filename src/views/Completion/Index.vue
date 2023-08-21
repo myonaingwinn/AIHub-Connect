@@ -1,8 +1,8 @@
 <template>
   <notification ref="notificationRef" />
   <v-row class="mb-16 completion-index">
-    <v-col cols="1" sm="2" md="2" lg="2" xl="3" xxl="3"> </v-col>
-    <v-col cols="10" sm="8" md="8" lg="8" xl="6" xxl="6" class="msg-col mb-8">
+    <v-col cols="1" sm="2" md="2" lg="2" xl="2" xxl="2"> </v-col>
+    <v-col cols="10" sm="8" md="8" lg="8" xl="8" xxl="8" class="msg-col mb-8">
       <message
         v-if="qa.length > 0"
         v-for="item in qa"
@@ -12,7 +12,7 @@
       />
       <empty v-else :type="SESSION_KEYS.COMPLETION" :submit="submit" />
     </v-col>
-    <v-col cols="1" sm="2" md="2" lg="2" xl="3" xxl="3">
+    <v-col cols="1" sm="2" md="2" lg="2" xl="2" xxl="2">
       <go-to-bottom-btn />
     </v-col>
   </v-row>
