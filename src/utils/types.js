@@ -32,9 +32,9 @@ export const SESSION_KEYS = {
 
 // Counts
 export const MAX_COUNT_VALUES = {
-  chat: 10,
-  completion: 5,
-  image: 5,
+  chat: 0,
+  completion: 0,
+  image: 10,
 };
 
 export const MAX_COUNT_TYPES = {

@@ -11,7 +11,7 @@ import {
   increment,
 } from "firebase/firestore/lite";
 import { getFirebaseConfig } from "@/utils/env";
-import { MAX_COUNT_VALUES } from "@/utils/types";
+import { MAX_COUNT_TYPES, MAX_COUNT_VALUES } from "@/utils/types";
 import { useAppStore } from "@/store/app";
 
 const firebaseConfig = getFirebaseConfig();
@@ -90,6 +90,13 @@ export async function getUserAndSaveToLocal(email) {
 
 export async function isValidToRequest(countType) {
   const userData = await getUser(getUserEmail());
+
+  if (
+    countType === MAX_COUNT_TYPES.CHAT ||
+    countType === MAX_COUNT_TYPES.COMPLETION
+  )
+    return true;
+
   return userData.max_count[countType] > 0;
 }
 
