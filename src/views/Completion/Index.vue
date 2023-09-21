@@ -110,7 +110,7 @@ export default {
         return rest;
       });
 
-      return newArray;
+      return newArray.slice(-10);
     },
   },
 
